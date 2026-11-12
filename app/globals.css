@@ -1,0 +1,448 @@
+/* 2026-11-12 13:30 KST */
+/* 따뜻한 종이 같은 일기장. 본문 명도 대비 4.5:1 이상, 누르는 영역 44px 이상, 375px 기준. */
+:root {
+  --paper: #fbf5ea;
+  --card: #fffdf8;
+  --line: #e6d8c0;
+  --ink: #3b2f2a;
+  --muted: #6b5b50;
+  --accent: #b8501f;
+  --accent-ink: #ffffff;
+  --accent-soft: #fbe3cf;
+  --danger: #a32a1c;
+  --focus: #1d4ed8;
+  --radius: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Pretendard", "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+h1,
+h2 {
+  margin: 0;
+  font-family: "Nanum Myeongjo", "Noto Serif KR", "Batang", serif;
+  line-height: 1.4;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* 틀 */
+.shell {
+  min-height: 100vh;
+}
+
+.page {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.page--center {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.page--center > .card {
+  width: 100%;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* 상단 줄과 탭 */
+.app-header {
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+}
+
+.app-header__bar,
+.tabs {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.app-header__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 56px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: "Nanum Myeongjo", "Noto Serif KR", "Batang", serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.tabs {
+  display: flex;
+  gap: 4px;
+}
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 16px;
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+}
+
+.tab[aria-current="page"] {
+  color: var(--accent);
+  font-weight: 700;
+  border-bottom-color: var(--accent);
+}
+
+/* 카드와 글 */
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px 16px;
+  box-shadow: 0 2px 8px rgb(120 80 40 / 8%);
+}
+
+.card--hero {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: center;
+  padding: 32px 20px;
+}
+
+.hero__emoji {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.title {
+  font-size: 1.5rem;
+}
+
+.lead {
+  font-size: 1.0625rem;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.small {
+  font-size: 0.875rem;
+}
+
+.label {
+  font-weight: 700;
+}
+
+.quote {
+  margin: 0;
+  padding: 16px;
+  background: var(--accent-soft);
+  border-left: 5px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-family: "Nanum Myeongjo", "Noto Serif KR", "Batang", serif;
+  font-size: 1.125rem;
+}
+
+.status-line {
+  min-height: 1.65em;
+  color: var(--muted);
+}
+
+.error-text {
+  color: var(--danger);
+  font-weight: 600;
+}
+
+.counter {
+  text-align: right;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+/* 입력 */
+.input {
+  width: 100%;
+  min-height: 52px;
+  padding: 10px 14px;
+  border: 2px solid #b79d7c;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+}
+
+.input::placeholder {
+  color: #7a6a5e;
+}
+
+/* 단추 */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  min-width: 44px;
+  padding: 0 20px;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.btn-secondary {
+  background: var(--card);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.btn-quiet {
+  background: transparent;
+  color: var(--muted);
+  border-color: var(--line);
+}
+
+.btn-danger {
+  background: var(--danger);
+  color: #fff;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* 감정 */
+.emotion {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.emotion[data-emotion="기쁨"] { background: #fdeeb8; }
+.emotion[data-emotion="슬픔"] { background: #d9e6f5; }
+.emotion[data-emotion="분노"] { background: #f8d4cd; }
+.emotion[data-emotion="불안"] { background: #e6dcf2; }
+.emotion[data-emotion="평온"] { background: #d8ecd9; }
+.emotion[data-emotion="지침"] { background: #e8e0d6; }
+
+.emotion__emoji {
+  font-size: 1.75rem;
+  line-height: 1;
+}
+
+.emotion__name {
+  font-size: 1.125rem;
+}
+
+.emotion__intensity {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.dots {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid var(--muted);
+}
+
+.dot--on {
+  background: var(--muted);
+}
+
+.empathy {
+  margin-top: 12px;
+  font-size: 1.0625rem;
+}
+
+.notice {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 12px 14px;
+  background: #fff3df;
+  border: 1px solid #e3c48f;
+  border-radius: 12px;
+}
+
+/* 위기 카드 */
+.crisis-card {
+  padding: 16px;
+  background: #fff1ee;
+  border: 2px solid var(--danger);
+  border-radius: var(--radius);
+}
+
+.crisis-card__title {
+  font-size: 1.0625rem;
+  color: #7a1d12;
+}
+
+.crisis-card__list {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+}
+
+.crisis-card__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 48px;
+  border-top: 1px solid #f0c9c2;
+}
+
+.crisis-card__tel {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 8px;
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: #7a1d12;
+}
+
+/* 지난 기록 */
+.entry {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.entry__time {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.entry__content {
+  font-size: 1.0625rem;
+  font-weight: 600;
+}
+
+.skeleton {
+  min-height: 120px;
+  background: linear-gradient(90deg, #f3e9d6, #fbf3e4, #f3e9d6);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+  }
+}
+
+/* 삭제 확인 창 */
+.dialog {
+  width: min(92vw, 400px);
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  color: var(--ink);
+}
+
+.dialog::backdrop {
+  background: rgb(59 47 42 / 55%);
+}
+
+.dialog__title {
+  font-size: 1.25rem;
+  margin-bottom: 8px;
+}
+
+.dialog__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}
