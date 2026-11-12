@@ -2,3 +2,16 @@
 .env.*
 !.env.example
 .claude/settings.local.json
+
+# Next.js
+/node_modules
+/.next/
+/out/
+/build
+next-env.d.ts
+*.tsbuildinfo
+npm-debug.log*
+
+# DB 상태 스냅샷 등 임시 산출물
+/db/snapshot*.json
+/db/*.snapshot.*
