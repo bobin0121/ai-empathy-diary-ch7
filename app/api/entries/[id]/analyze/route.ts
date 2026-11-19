@@ -6,6 +6,9 @@ import { getEntry } from "@/lib/db/entries";
 import { analyzeAndApply } from "@/lib/entry-service";
 import type { EntryResponse } from "@/lib/types";
 
+// 모델당 25초, 합계 50초까지 걸릴 수 있어 Vercel 함수 시간을 60초로 둔다.
+export const maxDuration = 60;
+
 type Ctx = { params: Promise<{ id: string }> };
 
 export async function POST(_request: Request, { params }: Ctx) {
