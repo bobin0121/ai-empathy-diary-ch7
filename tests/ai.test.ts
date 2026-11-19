@@ -14,6 +14,16 @@ describe("detectCrisisKeyword", () => {
       expect(detectCrisisKeyword(t), t).toBe(true);
     }
   });
+  it("QA에서 놓친 위기 표현을 잡는다", () => {
+    for (const t of ["손목을 그었다", "손목 그음", "목숨 끊고 싶다", "죽었으면 좋겠다", "죽고파", "뒤지고 싶다", "죽어야겠다", "그만 살고 싶어", "차라리 죽는 게 낫겠다", "한강에 투신할까", "투신해 버릴까", "한강에 투신", "옥상에서 투신"]) {
+      expect(detectCrisisKeyword(t), t).toBe(true);
+    }
+  });
+  it("오탐 위험이 큰 표현은 잡지 않는다", () => {
+    for (const t of ["배고파 죽겠다", "투신사 면접 봤다", "다 끝내고 싶다", "떠나고 싶다"]) {
+      expect(detectCrisisKeyword(t), t).toBe(false);
+    }
+  });
   it("평범한 글은 잡지 않는다", () => {
     for (const t of ["오늘 친구와 맛있는 점심을 먹었다", "배고파 죽겠다", "", "회의가 길어져 지쳤다"]) {
       expect(detectCrisisKeyword(t), t).toBe(false);
