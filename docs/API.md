@@ -50,7 +50,9 @@ AI 분석 실패는 오류가 아니다. 일기가 이미 저장되었으므로 
 - 응답 201: `{ "entry": Entry }`
   - 분석 성공: `aiStatus: "done"`, `emotion`, `intensity`, `empathyMessage` 채움.
   - 분석 실패: `aiStatus: "failed"`, 세 필드는 `null`. `crisis`는 키워드 검사 결과를 반영한다.
-- 오류: 400, 401, 500.
+  - 저장 뒤 분석이나 결과 반영에서 예외가 나도 일기는 이미 저장되었으므로 201과 `aiStatus: "failed"`로 응답한다(다시 눌러 중복 저장되는 일을 막음).
+- 오류: 400, 401, 500(저장 자체 실패만).
+- 함수 실행 시간: `maxDuration = 60`초(모델당 25초, 두 모델 합계 50초에 DB 시간을 더한 값).
 
 ### 4.2 `GET /api/entries?cursor=...` 내 일기 목록
 
@@ -69,6 +71,7 @@ AI 분석 실패는 오류가 아니다. 일기가 이미 저장되었으므로 
 - 처리: 내 일기인지 확인한 뒤 AI 분석만 다시 한다. `crisis`는 거짓으로 되돌리지 않는다.
 - 응답 200: `{ "entry": Entry }`. 성공이면 `aiStatus: "done"`, 또 실패면 `"failed"`.
 - 오류: 401, 404, 500.
+- 함수 실행 시간: `maxDuration = 60`초.
 
 ### 4.5 `DELETE /api/entries/{id}` 일기 삭제
 
