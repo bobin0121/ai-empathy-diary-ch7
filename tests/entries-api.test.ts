@@ -92,6 +92,24 @@ describe("POST /api/entries", () => {
     expect(db.applyAnalysis).toHaveBeenCalledWith("u1", ID, analysis);
   });
 
+  it("저장 뒤 반영에서 예외가 나면 500 대신 저장된 일기를 201로 돌려준다", async () => {
+    db.applyAnalysis.mockRejectedValue(new Error("db down"));
+    const r = await collection.POST(post({ content: "발표가 끝났다." }));
+    expect(r.status).toBe(201);
+    const entry = (await r.json()).entry;
+    expect(entry).toEqual(saved);
+    expect(entry.aiStatus).toBe("failed");
+    expect(db.createEntry).toHaveBeenCalledTimes(1);
+  });
+
+  it("저장 자체가 실패하면 500 SERVER_ERROR", async () => {
+    db.createEntry.mockRejectedValue(new Error("db down"));
+    const r = await collection.POST(post({ content: "발표가 끝났다." }));
+    expect(r.status).toBe(500);
+    expect((await r.json()).error.code).toBe("SERVER_ERROR");
+    expect(analyzeEntry).not.toHaveBeenCalled();
+  });
+
   it("줄바꿈은 공백으로 바꾼다", async () => {
     await collection.POST(post({ content: "가\n나\r\n다" }));
     expect(db.createEntry.mock.calls[0][1]).toBe("가 나 다");
