@@ -51,15 +51,17 @@ export default function WritePage() {
     : saving
       ? slow
         ? "조금만 더 기다려 주세요."
-        : "마음을 읽고 있어요…"
+        : "이야기를 천천히 읽고 있어요…"
       : (error ?? "");
 
   return (
     <div className="card">
-      <h1 className="title">오늘은 어땠나요?</h1>
+      <p className="greeting">오늘 하루도 수고 많았어요.</p>
+      <h1 className="title">오늘, 마음 쓰이는 일은 없었나요?</h1>
+      <p className="muted">속상했던 일도, 지친 순간도 괜찮아요. 편하게 한 줄로 털어놓아 주세요.</p>
       <form onSubmit={onSubmit} className="stack" noValidate>
         <label htmlFor="diary-text" className="label">
-          오늘의 한 줄
+          오늘의 마음 한 줄
         </label>
         <input
           id="diary-text"
@@ -67,7 +69,7 @@ export default function WritePage() {
           type="text"
           value={text}
           maxLength={CONTENT_MAX_LENGTH}
-          placeholder="오늘 있었던 일을 한 줄로 적어 보세요."
+          placeholder="예: 회의에서 내 의견이 묻혀서 하루 종일 서운했어."
           autoComplete="off"
           readOnly={saving}
           aria-describedby="diary-count diary-message"
@@ -84,7 +86,7 @@ export default function WritePage() {
           className="btn btn-primary btn-block"
           disabled={saving || expired || text.trim() === ""}
         >
-          기록하기
+          털어놓기
         </button>
         <p
           id="diary-message"

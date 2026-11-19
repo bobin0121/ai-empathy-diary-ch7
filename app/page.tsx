@@ -20,10 +20,11 @@ export default async function HomePage({
     <main className="page page--center">
       <div className="card card--hero">
         <p className="hero__emoji" aria-hidden="true">
-          📔
+          🕯️
         </p>
         <h1 className="title">공감 다이어리</h1>
-        <p className="lead">오늘 있었던 일을 한 줄로 적어 보세요. 마음을 읽고 따뜻하게 답해 드릴게요.</p>
+        <p className="lead">오늘 하루, 힘든 일은 없었나요?</p>
+        <p className="muted">한 줄이면 충분해요. 천천히 읽고, 따뜻하게 답해 드릴게요.</p>
         <form action={signInWithGoogle} className="stack">
           {error && (
             <p className="error-text" role="alert">

@@ -24,7 +24,12 @@ html {
 
 body {
   margin: 0;
-  background: var(--paper);
+  background-color: var(--paper);
+  /* 해 질 녘 창가 같은 은은한 노을빛 */
+  background-image:
+    radial-gradient(ellipse 90% 60% at 50% 0%, #fde3c8 0%, rgb(253 227 200 / 0%) 70%),
+    radial-gradient(ellipse 70% 50% at 100% 100%, #f8dccf 0%, rgb(248 220 207 / 0%) 70%);
+  background-attachment: fixed;
   color: var(--ink);
   font-family: "Pretendard", "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", system-ui, sans-serif;
   font-size: 1rem;
@@ -153,7 +158,18 @@ a {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 20px 16px;
-  box-shadow: 0 2px 8px rgb(120 80 40 / 8%);
+  box-shadow: 0 6px 24px rgb(150 90 40 / 12%);
+}
+
+.card > .title + .muted {
+  margin: 8px 0 16px;
+}
+
+.greeting {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  margin-bottom: 4px;
 }
 
 .card--hero {
@@ -174,7 +190,8 @@ a {
 }
 
 .lead {
-  font-size: 1.0625rem;
+  font-size: 1.25rem;
+  font-family: "Nanum Myeongjo", "Noto Serif KR", "Batang", serif;
 }
 
 .muted {
