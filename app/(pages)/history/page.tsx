@@ -182,7 +182,8 @@ export default function HistoryPage() {
 
       {status === "ready" && entries.length === 0 && (
         <div className="card stack">
-          <p className="lead">아직 쓴 일기가 없어요. 오늘의 한 줄을 남겨 볼까요?</p>
+          <p className="lead">지난 기록 없음</p>
+          <p className="muted">아직 남긴 이야기가 없어요. 오늘 마음 쓰이는 일이 있었다면 한 줄로 털어놓아 볼까요?</p>
           <Link href="/write" className="btn btn-primary">
             일기 쓰러 가기
           </Link>
